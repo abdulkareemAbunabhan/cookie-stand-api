@@ -82,12 +82,12 @@ class ApiTester:
         return response.json()
 
     # TODO adjust parameter names to match API
-    def create(self, name, description, owner):
+    def create(self, location, description, owner,hourly_sales,minimum_customers_per_hour,maximum_customers_per_hour,average_cookies_per_sale):
         """creates a resource in api
 
         Usage:
         python api_tester.py create /
-            --name=required --description=required --owner=required
+            --location=required --description=required --owner=required --hourly_sales=required --minimum_customers_per_hour=reuired --maximum_customers_per_hour=required --average_cookies_per_sale=required
 
         Returns: JSON
         """
@@ -101,21 +101,25 @@ class ApiTester:
         }
 
         data = {
-            "name": name,
+            "name": location,
             "description": description,
             "owner": int(owner),
+            "hourly_sales":int(hourly_sales),
+            "minimum_customers_per_hour":int(minimum_customers_per_hour),
+            "maximum_customers_per_hour":int(maximum_customers_per_hour),
+            "average_cookies_per_sale":int(average_cookies_per_sale)
         }
 
         response = requests.post(url, json=data, headers=headers)
 
         return response.json()
 
-    def update(self, id, name=None, description=None, owner=None):
+    def update(self, id, location=None, description=None, owner=None,hourly_sales=None,minimum_customers_per_hour=None,maximum_customers_per_hour=None,average_cookies_per_sale=None):
         """updates a resource in api
 
         Usage:
         python api_tester.py update 1 /
-            --name=optional --description=optional --owner=optional
+            --name=optional --description=optional --owner=optional --hourly_sales=optional --minimum_customers_per_hour=optional --maximum_customers_per_hour=optional --average_cookies_per_sale=optional
 
         Returns: JSON
         """
@@ -131,9 +135,13 @@ class ApiTester:
         original = self.get_one(id)
 
         data = {
-            "name": name or original["name"],
+            "location": location or original["location"],
             "description": description or original["description"],
             "owner": owner or original["owner"],
+            "hourly_sales":(hourly_sales) or original["hourly_sales"],
+            "minimum_customers_per_hour":(minimum_customers_per_hour) or original["minimum_customers_per_hour"],
+            "maximum_customers_per_hour":(maximum_customers_per_hour) or original["maximum_customers_per_hour"],
+            "average_cookies_per_sale":(average_cookies_per_sale) or original["average_cookies_per_sale"]
         }
 
         response = requests.put(url, json=data, headers=headers)

@@ -12,23 +12,47 @@
     class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
     <form class="space-y-6" method="POST">
       {% csrf_token %}
-      <h5 class="text-xl font-medium text-gray-900 dark:text-white">Update a Thing</h5>
+      <h5 class="text-xl font-medium text-gray-900 dark:text-white">Update a Cookie Stand</h5>
       <div>
-        <label for="id_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-        <input type="text" name="name" id="id_name"
+        <label for="id_location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+        <input type="text" name="location" id="id_location"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-               required value="{{ cookie.name }}">
+               required value="{{ cookie.location }}">
 
       </div>
       <div>
-        <label for="id_rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating</label>
-        <input type="number" name="rating" id="id_rating"
+        <label for="id_hourly_sales" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hourly Sales</label>
+        <input type="number" name="hourly_sales" id="id_hourly_sales"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-               value="{{ cookie.rating }}" min="0" max="5" required>
+               value="{{ cookie.hourly_sales }}" min="0" max="5" required>
       </div>
       <div>
-        <label for="id_reviewer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reviewer</label>
-        <select name="reviewer" id="id_reviewer">
+        <label for="id_hourly_sales" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hourly Sales</label>
+        <input type="number" name="hourly_sales" id="id_hourly_sales"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+               value="{{ cookie.hourly_sales }}" min="0" max="5" required>
+      </div>
+      <div>
+        <label for="id_minimum_customers_per_hour" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">minimum customers per hour</label>
+        <input type="number" name="minimum_customers_per_hour" id="id_minimum_customers_per_hour"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+               value="{{ cookie.minimum_customers_per_hour }}" min="0" max="5" required>
+      </div>
+      <div>
+        <label for="id_maximum_customers_per_hour" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">maximum customers per hour</label>
+        <input type="number" name="maximum_customers_per_hour" id="id_maximum_customers_per_hour"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+               value="{{ cookie.maximum_customers_per_hour }}" min="0" max="5" required>
+      </div>
+      <div>
+        <label for="id_average_cookies_per_sale" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">average cookies per sale</label>
+        <input type="number" name="average_cookies_per_sale" id="id_average_cookies_per_sale"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+               value="{{ cookie.average_cookies_per_sale }}" min="0" max="5" required>
+      </div>
+      <div>
+        <label for="id_owner" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Owner</label>
+        <select name="Owner" id="id_Owner">
           {% for value, choice in form.fields.reviewer.choices %}
             <option value="{{ value }}" {% if value == cookie.reviewer.id %}selected{% endif %}>{{ choice }}</option>
           {% endfor %}
